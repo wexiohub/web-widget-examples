@@ -2,9 +2,9 @@
   Wexio Widget — Vue 3 example.
 
   Minimal Vite + Vue 3 host that mounts the Wexio messenger in demo
-  mode (no `public-key`). To wire it to your own integration:
+  mode (`public-key="pk_demo"`). To wire it to your own integration:
 
-    1. Replace `undefined` below with your `pk_live_...` key.
+    1. Replace `"pk_demo"` below with your `pk_live_...` key.
     2. (Optional) Pass a `user` prop — see VisitorIdentity for the
        three supported shapes (JWT / HMAC / Google FedCM).
 
@@ -21,9 +21,10 @@ import {
   type VisitorIdentity,
 } from "@wexio/messenger-widget-vue";
 
-// Demo mode — leave undefined and the widget renders the bundled
-// mock content. Replace with your own key for live mode.
-const publicKey = ref<string | undefined>(undefined);
+// Demo mode — `"pk_demo"` is a documentation sentinel the widget
+// recognises and short-circuits to bundled mock content. Replace
+// with your own `pk_live_...` for live mode.
+const publicKey = ref<string>("pk_demo");
 
 // Identity is optional. `undefined` = anonymous visitor. Use a `ref`
 // when identity can change at runtime (login / logout).

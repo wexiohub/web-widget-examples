@@ -8,7 +8,7 @@
 
   To wire it to your own integration:
 
-    1. Replace `data-public-key` with your `pk_live_...` key.
+    1. Replace `data-public-key="pk_demo"` with your `pk_live_...` key.
     2. (Optional) Pre-boot known-user identity via
        `window.wexioSettings.user` BEFORE the loader runs — see
        https://learn.wexio.io/docs/web-widget for the proof shapes.
@@ -81,13 +81,14 @@
     </p>
 
     <!--
-      The widget loader. Replace `data-public-key` with your own.
-      Without a key it falls back to demo mode (bundled mock content).
+      The widget loader. `pk_demo` is a documentation sentinel — the
+      widget recognises it and renders bundled mock content. Replace
+      with your own `pk_live_...` for live mode.
     -->
     <script
       async
       src="https://cdn.wexio.io/widget/loader.js"
-      data-public-key=""
+      data-public-key="pk_demo"
     ></script>
   </body>
 </html>

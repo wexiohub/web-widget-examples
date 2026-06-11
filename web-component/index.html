@@ -7,7 +7,7 @@
 
   To wire it to your own integration:
 
-    1. Replace `public-key` with your `pk_live_...` key.
+    1. Replace `public-key="pk_demo"` with your `pk_live_...` key.
     2. (Optional) Add `prefill-name` / `prefill-email` / `prefill-phone`
        attributes for prechat prefill.
     3. (Optional) Add `locale` to pin a UI language (BCP-47 code).
@@ -64,10 +64,11 @@
     ></script>
 
     <!--
-      2. Mount the widget. Without `public-key` it renders demo mode.
+      2. Mount the widget. `pk_demo` is a documentation sentinel —
+         the widget recognises it and renders bundled mock content.
          Replace with your own `pk_live_...` for live mode.
     -->
-    <wexio-widget public-key=""></wexio-widget>
+    <wexio-widget public-key="pk_demo"></wexio-widget>
 
     <!-- 3. (Optional) Listen for the widget's CustomEvents. -->
     <script>

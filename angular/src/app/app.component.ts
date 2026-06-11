@@ -8,9 +8,9 @@ import {
  * Wexio Widget — Angular example.
  *
  * Minimal Angular standalone host that mounts the Wexio messenger in
- * demo mode (no `publicKey`). To wire it to your own integration:
+ * demo mode (`publicKey="pk_demo"`). To wire it to your own integration:
  *
- *   1. Replace `undefined` below with your `pk_live_...` key.
+ *   1. Replace `"pk_demo"` below with your `pk_live_...` key.
  *   2. (Optional) Set `user` to a verified `VisitorIdentity` — see the
  *      three supported shapes (JWT / HMAC / Google FedCM).
  *
@@ -53,9 +53,10 @@ import {
   `,
 })
 export class AppComponent {
-  // Demo mode — omit publicKey and the widget renders the bundled
-  // mock content. Replace with your own key for live mode.
-  publicKey: string | undefined = undefined;
+  // Demo mode — `"pk_demo"` is a documentation sentinel the widget
+  // recognises and short-circuits to bundled mock content. Replace
+  // with your own `pk_live_...` for live mode.
+  publicKey = "pk_demo";
 
   // Identity is optional. `null` = anonymous visitor. Re-assign when
   // identity changes (login / logout).

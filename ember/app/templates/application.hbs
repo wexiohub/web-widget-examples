@@ -1,10 +1,10 @@
 {{!--
   Wexio Widget — Ember example.
 
-  Minimal Ember host that mounts the Wexio messenger in demo mode (no
-  `public-key`). To wire it to your own integration:
+  Minimal Ember host that mounts the Wexio messenger in demo mode
+  (`public-key="pk_demo"`). To wire it to your own integration:
 
-    1. Replace the public-key attribute below with your `pk_live_...`.
+    1. Replace `"pk_demo"` below with your `pk_live_...` key.
     2. (Optional) Identify a known user via `this.wexioWidget.identify(...)`
        from any controller / component — see the service helper docs.
 
@@ -33,6 +33,7 @@
   </p>
 
   <wexio-widget
+    public-key="pk_demo"
     {{on "wexio:resize" this.onResize}}
     {{on "wexio:close" this.onClose}}
   ></wexio-widget>

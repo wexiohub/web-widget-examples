@@ -8,18 +8,19 @@ import {
  * Wexio Widget — React example.
  *
  * Minimal Vite + React 19 host that mounts the Wexio messenger in
- * demo mode (no `publicKey`). To wire it to your own integration:
+ * demo mode (`publicKey="pk_demo"`). To wire it to your own integration:
  *
- *   1. Replace `undefined` below with your `pk_live_...` key.
+ *   1. Replace `"pk_demo"` below with your `pk_live_...` key.
  *   2. (Optional) Pass a `user` proof — see `VisitorIdentity` for the
  *      three supported shapes (JWT / HMAC / Google FedCM).
  *
  * Docs: https://learn.wexio.io/docs/web-widget
  */
 export function App() {
-  // Demo mode — omit publicKey and the widget renders the bundled
-  // mock content. Replace with your own key for live mode.
-  const publicKey: string | undefined = undefined;
+  // Demo mode — `"pk_demo"` is a documentation sentinel the widget
+  // recognises and short-circuits to bundled mock content. Replace
+  // with your own `pk_live_...` for live mode.
+  const publicKey = "pk_demo";
 
   // Identity is optional. Memoise so a fresh literal every render
   // doesn't churn the internal env memo. (`undefined` = anonymous.)
