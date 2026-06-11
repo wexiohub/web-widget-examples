@@ -1,0 +1,24 @@
+node_modules/
+.DS_Store
+*.log
+.env
+.env.local
+
+# Vite
+**/dist/
+**/.vite/
+
+# Angular
+**/.angular/
+**/tmp/
+
+# Ember
+**/tmp/
+**/dist/
+**/coverage/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

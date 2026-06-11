@@ -1,0 +1,10 @@
+{
+  "name": "wexio-widget-example-web-component",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Wexio Widget — Web Component embed. Zero build, zero framework. A single <script type='module'> + <wexio-widget> tag.",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'static — no build step'"
+  }
+}

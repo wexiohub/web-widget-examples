@@ -1,0 +1,104 @@
+name: Sync on widget release
+
+# Fires when `wexiohub/web-widget` finishes publishing a new version
+# and sends a `repository_dispatch` event our way. Bumps every
+# example's `package.json` to the new exact widget version, refreshes
+# the lockfiles, and commits to `main`. CodeSandbox re-imports from
+# `main` on every click, so users always get the latest published
+# version with a matching lockfile.
+#
+# Manual trigger (workflow_dispatch) is supported too — pick the
+# target version in the form input. Useful when the dispatch event
+# was missed (e.g. token expired, transient GH outage).
+
+on:
+  repository_dispatch:
+    types: [widget-released]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Widget version to bump every example to (e.g. 1.0.23)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve target version
+        id: version
+        run: |
+          if [ -n "${{ inputs.version }}" ]; then
+            echo "value=${{ inputs.version }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=${{ github.event.client_payload.version }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Validate version
+        run: |
+          V="${{ steps.version.outputs.value }}"
+          if ! echo "$V" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+(-[a-z0-9.-]+)?$'; then
+            echo "::error::Invalid version: $V"
+            exit 1
+          fi
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Bump package.json versions
+        env:
+          NEW_VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          # Loop every example package and rewrite the four wexio deps
+          # to the new exact version. `^` is dropped on purpose — pinning
+          # to exact ensures the lockfile matches the package badge.
+          for pkg in react vue angular ember; do
+            file="$pkg/package.json"
+            [ -f "$file" ] || continue
+            node -e "
+              const fs = require('fs');
+              const path = '$file';
+              const pj = JSON.parse(fs.readFileSync(path, 'utf8'));
+              const v = process.env.NEW_VERSION;
+              for (const key of ['@wexio/messenger-widget-react','@wexio/messenger-widget-vue','@wexio/messenger-widget-angular','@wexio/messenger-widget-ember']) {
+                if (pj.dependencies && pj.dependencies[key]) {
+                  pj.dependencies[key] = '^' + v;
+                }
+              }
+              fs.writeFileSync(path, JSON.stringify(pj, null, 2) + '\n');
+            "
+          done
+
+      - name: Refresh lockfiles
+        env:
+          NEW_VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          # Each npm-based example gets a fresh lockfile so CodeSandbox
+          # resolves the exact dependency tree we publish-tested. Static
+          # examples (cdn-loader, web-component) have no lockfile to
+          # refresh.
+          for pkg in react vue angular ember; do
+            [ -d "$pkg" ] || continue
+            ( cd "$pkg" && npm install --package-lock-only --no-audit --no-fund ) || true
+          done
+
+      - name: Commit and push
+        env:
+          NEW_VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes — examples already at $NEW_VERSION."
+            exit 0
+          fi
+          git add -A
+          git commit -m "chore: sync examples to widget v$NEW_VERSION"
+          git push

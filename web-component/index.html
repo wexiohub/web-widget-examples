@@ -1,0 +1,83 @@
+<!doctype html>
+<!--
+  Wexio Widget — Web Component example.
+
+  Zero build, zero framework. Loads the web-component runtime from the
+  CDN, then mounts a `<wexio-widget>` element anywhere in the markup.
+
+  To wire it to your own integration:
+
+    1. Replace `public-key` with your `pk_live_...` key.
+    2. (Optional) Add `prefill-name` / `prefill-email` / `prefill-phone`
+       attributes for prechat prefill.
+    3. (Optional) Add `locale` to pin a UI language (BCP-47 code).
+
+  All attributes are LIVE — mutating them at runtime re-resolves the
+  widget config without a remount.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wexio Widget — Web Component example</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        max-width: 720px;
+        margin: 60px auto;
+        padding: 0 20px;
+        line-height: 1.6;
+      }
+      code {
+        background: #f5f5f7;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Wexio Widget — Web Component example</h1>
+    <p>
+      This page uses the <code>&lt;wexio-widget&gt;</code> custom element
+      directly. The widget paints into its own Shadow DOM — host styles
+      do not leak in or out.
+    </p>
+    <p>
+      View source to see the embed — a single
+      <code>&lt;script type="module"&gt;</code> tag plus the
+      <code>&lt;wexio-widget&gt;</code> element.
+    </p>
+    <p>
+      Full docs:
+      <a
+        href="https://learn.wexio.io/docs/web-widget"
+        target="_blank"
+        rel="noreferrer"
+        >learn.wexio.io/docs/web-widget</a
+      >
+    </p>
+
+    <!-- 1. Load the web-component runtime (registers <wexio-widget>). -->
+    <script
+      type="module"
+      src="https://cdn.wexio.io/widget/widget.js"
+    ></script>
+
+    <!--
+      2. Mount the widget. Without `public-key` it renders demo mode.
+         Replace with your own `pk_live_...` for live mode.
+    -->
+    <wexio-widget public-key=""></wexio-widget>
+
+    <!-- 3. (Optional) Listen for the widget's CustomEvents. -->
+    <script>
+      const el = document.querySelector("wexio-widget");
+      el.addEventListener("wexio:resize", (e) => {
+        console.log("[wexio] resize", e.detail.width, e.detail.height);
+      });
+      el.addEventListener("wexio:close", () => {
+        console.log("[wexio] close");
+      });
+    </script>
+  </body>
+</html>

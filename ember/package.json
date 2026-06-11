@@ -1,0 +1,29 @@
+{
+  "name": "wexio-widget-example-ember",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "start": "ember serve",
+    "build": "ember build --environment=production"
+  },
+  "dependencies": {
+    "@wexio/messenger-widget-ember": "^1.0.22"
+  },
+  "devDependencies": {
+    "@glimmer/component": "^1.1.2",
+    "@glimmer/tracking": "^1.1.2",
+    "ember-auto-import": "^2.7.0",
+    "ember-cli": "~5.4.0",
+    "ember-cli-app-version": "^7.0.0",
+    "ember-cli-babel": "^8.2.0",
+    "ember-cli-htmlbars": "^6.3.0",
+    "ember-load-initializers": "^2.1.2",
+    "ember-resolver": "^11.0.0",
+    "ember-source": "~5.4.0",
+    "ember-template-imports": "^4.1.0",
+    "loader.js": "^4.7.0"
+  },
+  "engines": {
+    "node": ">= 18"
+  }
+}

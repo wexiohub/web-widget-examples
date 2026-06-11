@@ -1,0 +1,93 @@
+<!doctype html>
+<!--
+  Wexio Widget — CDN loader (iframe) example.
+
+  Zero build, zero dependencies. Paste the <script> tag into any HTML
+  page and the widget mounts itself as a sandboxed iframe in the
+  bottom-right corner.
+
+  To wire it to your own integration:
+
+    1. Replace `data-public-key` with your `pk_live_...` key.
+    2. (Optional) Pre-boot known-user identity via
+       `window.wexioSettings.user` BEFORE the loader runs — see
+       https://learn.wexio.io/docs/web-widget for the proof shapes.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wexio Widget — CDN loader example</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        max-width: 720px;
+        margin: 60px auto;
+        padding: 0 20px;
+        line-height: 1.6;
+      }
+      code {
+        background: #f5f5f7;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+      pre {
+        background: #f5f5f7;
+        padding: 16px;
+        border-radius: 8px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Wexio Widget — CDN loader example</h1>
+    <p>
+      This page loads the Wexio widget via the script-injection
+      <code>loader.js</code>. The widget mounts as a sandboxed iframe in
+      the bottom-right corner; the loader handles
+      <code>postMessage</code> events for open/close/resize.
+    </p>
+    <p>
+      View source to see the embed — it's a single
+      <code>&lt;script&gt;</code> tag.
+    </p>
+
+    <h2>Pre-boot known users (optional)</h2>
+    <p>
+      Set <code>window.wexioSettings.user</code> BEFORE the loader runs
+      to log a known visitor in:
+    </p>
+    <pre>
+&lt;script&gt;
+  window.wexioSettings = {
+    user: {
+      jwt: "&lt;host-signed-jwt&gt;",
+      name: "Ada Lovelace",
+      email: "ada@example.com",
+    },
+  };
+&lt;/script&gt;
+&lt;script async src="https://cdn.wexio.io/widget/loader.js" data-public-key="pk_live_..."&gt;&lt;/script&gt;</pre
+    >
+
+    <p>
+      Full docs:
+      <a
+        href="https://learn.wexio.io/docs/web-widget"
+        target="_blank"
+        rel="noreferrer"
+        >learn.wexio.io/docs/web-widget</a
+      >
+    </p>
+
+    <!--
+      The widget loader. Replace `data-public-key` with your own.
+      Without a key it falls back to demo mode (bundled mock content).
+    -->
+    <script
+      async
+      src="https://cdn.wexio.io/widget/loader.js"
+      data-public-key=""
+    ></script>
+  </body>
+</html>

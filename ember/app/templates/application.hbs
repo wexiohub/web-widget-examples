@@ -1,0 +1,41 @@
+{{!--
+  Wexio Widget — Ember example.
+
+  Minimal Ember host that mounts the Wexio messenger in demo mode (no
+  `public-key`). To wire it to your own integration:
+
+    1. Replace the public-key attribute below with your `pk_live_...`.
+    2. (Optional) Identify a known user via `this.wexioWidget.identify(...)`
+       from any controller / component — see the service helper docs.
+
+  Docs: https://learn.wexio.io/docs/web-widget
+--}}
+<main>
+  <h1>Wexio Widget — Ember example</h1>
+  <p>
+    This page mounts <code>&lt;wexio-widget&gt;</code> in demo mode.
+    Look for the floating launcher in the bottom-right corner.
+  </p>
+  <p>
+    Open <code>app/templates/application.hbs</code> and set
+    <code>public-key</code> to your <code>pk_live_…</code> key to wire
+    it to your own Wexio integration.
+  </p>
+  <p>
+    Full docs:
+    <a
+      href="https://learn.wexio.io/docs/web-widget"
+      target="_blank"
+      rel="noreferrer"
+    >
+      learn.wexio.io/docs/web-widget
+    </a>
+  </p>
+
+  <wexio-widget
+    {{on "wexio:resize" this.onResize}}
+    {{on "wexio:close" this.onClose}}
+  ></wexio-widget>
+</main>
+
+{{outlet}}

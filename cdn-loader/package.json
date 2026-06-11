@@ -1,0 +1,10 @@
+{
+  "name": "wexio-widget-example-cdn-loader",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Wexio Widget — script-injection (iframe) embed. Zero build, zero dependencies — a single <script> tag in plain HTML.",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'static — no build step'"
+  }
+}
