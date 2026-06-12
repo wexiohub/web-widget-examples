@@ -12,12 +12,14 @@ Each example is a self-contained minimal app. Click **▶ Open in CodeSandbox** 
 
 | Framework / mode | Open in CodeSandbox | Files |
 |---|---|---|
-| **React** (Vite) | [▶ Open](https://codesandbox.io/p/sandbox/github/wexiohub/web-widget-examples/tree/main/react) | [`react/`](./react/) |
-| **Vue 3** (Vite) | [▶ Open](https://codesandbox.io/p/sandbox/github/wexiohub/web-widget-examples/tree/main/vue) | [`vue/`](./vue/) |
-| **Angular** (standalone) | [▶ Open](https://codesandbox.io/p/sandbox/github/wexiohub/web-widget-examples/tree/main/angular) | [`angular/`](./angular/) |
-| **Ember** | [▶ Open](https://codesandbox.io/p/sandbox/github/wexiohub/web-widget-examples/tree/main/ember) | [`ember/`](./ember/) |
-| **Script loader** (zero build) | [▶ Open](https://codesandbox.io/p/sandbox/github/wexiohub/web-widget-examples/tree/main/cdn-loader) | [`cdn-loader/`](./cdn-loader/) |
-| **Web Component** (zero build) | [▶ Open](https://codesandbox.io/p/sandbox/github/wexiohub/web-widget-examples/tree/main/web-component) | [`web-component/`](./web-component/) |
+| **React** (Vite) | [▶ CodeSandbox](https://codesandbox.io/p/sandbox/github/wexiohub/web-widget-examples/tree/main/react) · [▶ StackBlitz](https://stackblitz.com/github/wexiohub/web-widget-examples/tree/main/react) | [`react/`](./react/) |
+| **Vue 3** (Vite) | [▶ CodeSandbox](https://codesandbox.io/p/sandbox/github/wexiohub/web-widget-examples/tree/main/vue) · [▶ StackBlitz](https://stackblitz.com/github/wexiohub/web-widget-examples/tree/main/vue) | [`vue/`](./vue/) |
+| **Angular** (standalone) | [▶ CodeSandbox](https://codesandbox.io/p/sandbox/github/wexiohub/web-widget-examples/tree/main/angular) · [▶ StackBlitz](https://stackblitz.com/github/wexiohub/web-widget-examples/tree/main/angular) | [`angular/`](./angular/) |
+| **Ember** | [▶ CodeSandbox](https://codesandbox.io/p/sandbox/github/wexiohub/web-widget-examples/tree/main/ember) · [▶ StackBlitz](https://stackblitz.com/github/wexiohub/web-widget-examples/tree/main/ember) | [`ember/`](./ember/) |
+| **Script loader** (zero build) | [▶ CodeSandbox](https://codesandbox.io/p/sandbox/github/wexiohub/web-widget-examples/tree/main/cdn-loader) · [▶ StackBlitz](https://stackblitz.com/github/wexiohub/web-widget-examples/tree/main/cdn-loader) | [`cdn-loader/`](./cdn-loader/) |
+| **Web Component** (zero build) | [▶ CodeSandbox](https://codesandbox.io/p/sandbox/github/wexiohub/web-widget-examples/tree/main/web-component) · [▶ StackBlitz](https://stackblitz.com/github/wexiohub/web-widget-examples/tree/main/web-component) | [`web-component/`](./web-component/) |
+
+> **Two sandbox providers** for redundancy — CodeSandbox uses cloud microVMs, StackBlitz uses in-browser WebContainers. When one provider has infrastructure trouble, the other usually keeps working. Both auto-import from this repo on click.
 
 > **Demo mode by default** — every example boots with `publicKey="pk_demo"`, a documentation sentinel the widget recognises and short-circuits to bundled mock content. Swap in your own `pk_live_...` key in the entry file to wire to your integration (each example points you to the right spot in a comment at the top).
 
