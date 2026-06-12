@@ -20,6 +20,20 @@
     />
 
     {{content-for "head-footer"}}
+
+    <!--
+      Loads the <wexio-widget> custom element runtime. v1.0.24 of
+      @wexio/messenger-widget-ember dropped the side-effect import of
+      widget.js to fix the ember-cli ESM/CJS clash (require() of pure
+      ESM was rejected at package-info-cache scan time). The
+      WexioWidgetService now runtime-injects this same script as a
+      fallback, but loading it here gets the bundle warm before any
+      template renders <wexio-widget>.
+    -->
+    <script
+      type="module"
+      src="https://cdn.wexio.io/widget/widget.js"
+    ></script>
   </head>
   <body>
     {{content-for "body"}}

@@ -4,6 +4,17 @@
     <meta charset="utf-8" />
     <title>Wexio Widget — Angular example</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--
+      Loads the <wexio-widget> custom element runtime in parallel with
+      Angular bootstrap. The wrapper component runtime-injects this same
+      script as a fallback (idempotent — marker attribute guards it), so
+      either path works. Loading it here gets the bundle warm before the
+      first `ngAfterViewInit`.
+    -->
+    <script
+      type="module"
+      src="https://cdn.wexio.io/widget/widget.js"
+    ></script>
   </head>
   <body>
     <app-root></app-root>
