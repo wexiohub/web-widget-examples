@@ -4,7 +4,11 @@
   "version": "0.0.0",
   "description": "Wexio Widget — Web Component embed. Zero build, zero framework. A single <script type='module'> + <wexio-widget> tag.",
   "scripts": {
-    "start": "npx serve .",
+    "start": "serve .",
+    "dev": "serve .",
     "build": "echo 'static — no build step'"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0"
   }
 }

@@ -4,7 +4,11 @@
   "version": "0.0.0",
   "description": "Wexio Widget — script-injection (iframe) embed. Zero build, zero dependencies — a single <script> tag in plain HTML.",
   "scripts": {
-    "start": "npx serve .",
+    "start": "serve .",
+    "dev": "serve .",
     "build": "echo 'static — no build step'"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0"
   }
 }
