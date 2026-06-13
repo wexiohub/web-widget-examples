@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@wexio/messenger-widget-vue": "^1.0.22",
+    "@wexio/messenger-widget-vue": "^1.0.28",
     "vue": "^3.5.0"
   },
   "devDependencies": {
